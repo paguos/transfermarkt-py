@@ -2,12 +2,12 @@ import pytest
 
 import transfermarkt as tm
 
+from transfermarkt import GenericStruct
 
-@pytest.mark.vcr()
-def test_list_competitions():
-    competitions = tm.list_competitions()
 
-    test_competition = {
+@pytest.fixture
+def test_competition():
+    return GenericStruct(**{
         "name": "Premier League",
         "id": "/premier-league/startseite/wettbewerb/GB1",
         "country": "England",
@@ -17,9 +17,35 @@ def test_list_competitions():
         "foreigners_percent": "63.1 %",
         "forum": None,
         "total_value": "€8.79bn"
-    }
+    })
 
+
+@pytest.fixture
+def test_club():
+    return GenericStruct(**{
+        "id": "/fc-arsenal/startseite/verein/11/saison_id/2021",
+        "name": "Arsenal FC",
+        "total_players": "21",
+        "avg_age": "24.8",
+        "total_foreigners": "14",
+        "avg_market_value": "€24.81m",
+        "market_value": "€521.00m"
+    })
+
+
+@pytest.mark.vcr()
+def test_list_competitions(test_competition):
+    competitions = tm.list_competitions()
     expected_competitions = 25
 
-    assert len(competitions) == expected_competitions
+    assert expected_competitions == len(competitions)
     assert test_competition in competitions
+
+
+@pytest.mark.vcr()
+def test_list_clubs(test_competition, test_club):
+    clubs = tm.list_clubs(test_competition)
+    expected_clubs = 20
+
+    assert expected_clubs == len(clubs)
+    assert test_club in clubs

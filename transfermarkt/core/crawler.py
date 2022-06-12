@@ -2,7 +2,7 @@ import requests
 
 from bs4 import BeautifulSoup
 
-TRANSFERMARKT_URL = "https://www.transfermarkt.com/"
+TRANSFERMARKT_URL = "https://www.transfermarkt.com"
 
 CRAWLER_AGENT = "tranfermarkt-py"
 
