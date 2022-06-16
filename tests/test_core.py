@@ -2,32 +2,32 @@ import pytest
 
 import transfermarkt as tm
 
-from transfermarkt import GenericStruct
+from transfermarkt.models import Club
+from transfermarkt.models import Competition
 
 
 @pytest.fixture
 def test_competition():
-    return GenericStruct(**{
+    return Competition(**{
         "name": "Premier League",
         "id": "/premier-league/startseite/wettbewerb/GB1",
         "country": "England",
-        "total_clubs": "20",
-        "total_players": "564",
-        "avg_age": "27.1",
-        "foreigners_percent": "63.1 %",
-        "forum": None,
+        "total_clubs": 20,
+        "total_players": 564,
+        "avg_age": 27.1,
+        "foreigners_percent": 63.1,
         "total_value": "€8.79bn"
     })
 
 
 @pytest.fixture
 def test_club():
-    return GenericStruct(**{
+    return Club(**{
         "id": "/fc-arsenal/startseite/verein/11/saison_id/2021",
         "name": "Arsenal FC",
-        "total_players": "21",
-        "avg_age": "24.8",
-        "total_foreigners": "14",
+        "total_players": 21,
+        "avg_age": 24.8,
+        "total_foreigners": 14,
         "avg_market_value": "€24.81m",
         "market_value": "€521.00m"
     })

@@ -1,6 +1,12 @@
-from transfermarkt.core.generic_struct import GenericStruct
-
-from transfermarkt.resources.competition import list_competitions, list_clubs
 
 
-__all__ = [GenericStruct, list_competitions, list_clubs]
+from transfermarkt.core import list_competitions, list_clubs
+
+from transfermarkt.models import Club, Competition
+
+__all__ = [
+    Club,
+    Competition,
+    list_competitions,
+    list_clubs
+]
