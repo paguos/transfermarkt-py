@@ -2,6 +2,7 @@ from transfermarkt import crawler
 from transfermarkt.cellconfig import CellConfig
 from transfermarkt.cellconfig import CellOperation
 from transfermarkt.models import Club, Competition
+from transfermarkt.utils import current_season
 
 COMPETITIONS_ENDPOINT = "/wettbewerbe/europa/wettbewerbe"
 
@@ -41,8 +42,13 @@ def list_competitions() -> list:
     ) for row in content]
 
 
-def list_clubs(competition) -> list:
-    soup = crawler.fetch_content(competition.id)
+def list_clubs(
+        competition: Competition,
+        season: int = current_season()
+) -> list:
+    soup = crawler.fetch_content(
+        competition.id + f"/plus/?saison_id={season}"
+    )
     items_table = soup.find_all("table", {"class": "items"})[0]
     content = items_table.select("tbody > tr")
 

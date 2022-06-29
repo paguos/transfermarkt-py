@@ -23,13 +23,13 @@ def test_competition():
 @pytest.fixture
 def test_club():
     return Club(**{
-        "id": "/fc-arsenal/startseite/verein/11/saison_id/2021",
+        "id": "/fc-arsenal/startseite/verein/11/saison_id/2018",
         "name": "Arsenal FC",
-        "total_players": 21,
-        "avg_age": 24.8,
-        "total_foreigners": 14,
-        "avg_market_value": "€24.81m",
-        "market_value": "€521.00m"
+        "total_players": 42,
+        "avg_age": 24.9,
+        "total_foreigners": 28,
+        "avg_market_value": "€15.69m",
+        "market_value": "€659.05m"
     })
 
 
@@ -44,7 +44,7 @@ def test_list_competitions(test_competition):
 
 @pytest.mark.vcr()
 def test_list_clubs(test_competition, test_club):
-    clubs = tm.list_clubs(test_competition)
+    clubs = tm.list_clubs(test_competition, season=2018)
     expected_clubs = 20
 
     assert expected_clubs == len(clubs)
