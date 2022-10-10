@@ -1,10 +1,14 @@
 from dataclasses import dataclass
 
+############################
+# Response Classes
+############################
+
 
 @dataclass
 class Club:
+    id: int
     name: str
-    id: str
     total_players: int
     avg_age: float
     total_foreigners: int
@@ -14,8 +18,8 @@ class Club:
 
 @dataclass
 class Competition:
-    name: str
     id: str
+    name: str
     country: str
     total_clubs: int
     total_players: int
