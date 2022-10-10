@@ -10,7 +10,7 @@ from transfermarkt.models import Competition
 def test_competition():
     return Competition(**{
         "name": "Premier League",
-        "id": "/premier-league/startseite/wettbewerb/GB1",
+        "id": "GB1",
         "country": "England",
         "total_clubs": 20,
         "total_players": 564,
@@ -23,7 +23,7 @@ def test_competition():
 @pytest.fixture
 def test_club():
     return Club(**{
-        "id": "/fc-arsenal/startseite/verein/11/saison_id/2018",
+        "id": 11,
         "name": "Arsenal FC",
         "total_players": 42,
         "avg_age": 24.9,
